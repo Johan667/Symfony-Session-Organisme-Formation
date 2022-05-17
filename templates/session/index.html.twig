@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session {{session.intituleSession}}{% endblock %}
+
+{% block body %}
+<h1>{{session.intituleSession}}</h1>
+ <td><a class="" href="{{ path('maj_session', {'id' : session.id}) }}"><i class="fa-solid fa-pen"></i></a></td>
+<div class="row">
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Durée</h5>
+
+            <p class="h3">Début : {{session.dateDebut | date('d-m-Y') }}<br>
+                Fin : {{session.dateFin | date('d-m-Y') }}</p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Places</h5>
+
+            <p class="h3">{{session.nbPlace}} Places Maximum<br>
+                {{ session.nbPlacesRestantes }} Places restantes</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Formateur</h5>
+            <p class="h3">
+                <a href="{{ path('detail_formateur', {'id': session.formateur.id}) }}">{{ session.formateur }}</a>
+            </p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Liste des participiants</h5>
+            <p class="h3">
+                {% if session.stagiaires | length >= 1 %}
+                {% for stagiaire in session.stagiaires %}
+                <a href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}"> {{ stagiaire }} </a> <a
+                    href="{{ path('supprimer_stagiaire_session', { 'idSe': session.id , 'idSt' : stagiaire.id }) }}"><i
+                        class="fa-solid fa-minus"></i></a><br>
+
+                {% endfor %}
+                {% else %}
+                <p>Aucun stagiaire</p>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Programme</h5>
+            <p class="h3">
+                {% for programme in session.sessionProgrammes %}
+                {{ programme.cours }} ({{ programme.nbJoursCours }} jours)<a
+                    href="{{ path('supprimer_cours_session', { 'idSession': session.id , 'idCours' : programme.id }) }}"><i
+                        class="fa-solid fa-trash"></i></a><br>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Cours non programmé</h5>
+            <p class="h3">
+                {% for cours in coursNonProgrammes %}
+                <form action="{{ path('ajouter_cours_session', { 'idSession': session.id , 'idCours' : cours.id }) }}" method="post"> 
+                {{ cours.nomCours }}
+                    <input type="number" name="nbJoursCours"> Nombre de jours
+                    <br>
+                    <input type="submit">
+                </form>
+                {% endfor %}<br>
+            </p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Liste des non Inscrits</h5>
+            <p class="h3">
+                {% for stagiaire in nonInscrits %}
+                <a href="{{ path('detail_stagiaire', { 'id': stagiaire.id}) }}">{{ stagiaire }}</a><a
+                    href="{{ path('ajouter_stagiaire_session', { 'idSe': session.id , 'idSt' : stagiaire.id }) }}">
+                    <i class="fa-solid fa-plus"></i></a><br>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

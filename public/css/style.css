@@ -1,0 +1,27 @@
+.box-tab{
+display: flex;
+width: 700px;
+margin-left:25%;
+margin-top:5%;
+}
+
+.info-head{
+    font-size: 20px;
+    font-weight: bold;
+    text-align:center;
+}
+.box-inv table{
+
+    width: 1000px;
+    margin-left:15%;
+    margin-right:25%
+    }
+.fa-minus{
+    color:red;
+}
+.fa-plus{
+    color:green;
+}
+
+
+

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}COURS!{% endblock %}
+
+{% block body %}
+<h1>Liste des cours</h1>
+<a class="nav-link" href="{{path('ajouter_cours')}}"> Ajouter un Cours</a><br>
+<div class="box-tab">
+    <table class="table">
+        <thead class="thead-light">
+            <tr class="text-center">
+                <th>Listing des différents cours</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for cour in cours %}
+
+            <tr class="text-center">
+                <td>{{ cour }}</td>
+                 <td><a href="{{ path('maj_cours', { 'id' : cour.id }) }}"><i class="fa-solid fa-pen"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

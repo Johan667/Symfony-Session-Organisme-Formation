@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<h1>Accueil</h1>
+
+<div class="row">
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Nombre de stagiaire</h5>
+
+            <p class="h3">{{ stagiaires | length }}</p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Nombre de formation</h5>
+            <p class="h3">{{ formations | length }}</p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Nombre de formateurs</h5>
+            <p class="h3">{{ formateurs | length }}</p>
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Nombre de sessions</h5>
+            <p class="h3">{{ sessions | length }}</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sessions passées</h5>
+            {% for sessionpa in sessionsPassees %}
+            <p class="h3">{{ sessionpa.intituleSession }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sessions en Cours</h5>
+            {% for sessionX in sessionsNow %}
+            <p class="h3">{{ sessionX.intituleSession }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card mx-3 col" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title">Sessions futures</h5>
+            {% for sessionfu in sessionsFutures %}
+            <p class="h3">{{ sessionfu.intituleSession }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des cours par session {% endblock %}
+
+{% block body %}
+<div class="box-tab">
+    <table class="table">
+        <thead class="thead-light">
+            <tr class="text-center">
+                <th>Listing des différents cours par session</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for cour in session_cours %}
+
+            <tr class="text-center">
+                <td>{{ cour }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

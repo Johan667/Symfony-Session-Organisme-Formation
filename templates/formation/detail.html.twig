@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sessions{% endblock %}
+
+{% block body %}
+<div class="info-head">
+<p>Il y a {{ formation.sessions | length }} session</p>
+</div>
+<div class="box-tab">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Nom</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for session in formation.sessions %}
+      <tr>
+        <td><a href="{{ path('detail_session', {'id': session.id}) }}"> {{session.intituleSession}} </a></td>
+       
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}      
+
+
+{# ON CLIQUE DANS LES SESSIONS POUR TROUVER LES NOMS DE MODULE LE PROGRAMME ET LA LISTE DE CE QUI Y PARTICIPE #}
+          
+          
+          

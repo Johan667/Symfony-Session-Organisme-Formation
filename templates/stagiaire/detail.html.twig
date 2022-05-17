@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche stagiaire{% endblock %}
+
+{% block body %}
+<h1><i class="fa-solid fa-address-book"></i> Fiche Stagiaire </h1>
+
+    <h2>{{ stagiaire.prenom}} {{ stagiaire.nom}}</h2>
+    <p><b>Sexe</b> : {{ stagiaire.sexe}}</p>
+    <p><b>Date de naissance</b> : {{ stagiaire.dateNaissance | date('d-m-Y') }}</p>
+    <p><b>Ville</b> : {{ stagiaire.ville}}</p>
+    <p><b>Email</b> : {{ stagiaire.email}}</p>
+    <p><b>Telephone</b> : {{ stagiaire.telephone}}</p>
+
+    <h1><i class="fa-solid fa-briefcase"></i> Prochaine Formations : </h1>
+
+    {% for session in stagiaire.sessions %}
+    <ul><li> <a href="{{ path('detail_session', {'id': session.id}) }}">  {{session.intituleSession}} </a>
+    </li></ul>
+    {% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LISTE DES STAGIAIRES{% endblock %}
+
+{% block body %}
+<div class="info-head">
+<p>Il y a {{ stagiaires | length }} stagiaires</p>
+<a class="nav-link" href="{{path('ajouter_stagiaire')}}"> Ajouter un Stagiaire</a><br>
+</div>
+<div class="box-tab">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Detail</th>
+          <th scope="col">Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td>{{ stagiaire.nom}}</td>
+                <td>{{ stagiaire.prenom}}</td>
+                <td><a href="{{ path('detail_stagiaire', {'id': stagiaire.id}) }}"><i class="fa-solid fa-circle-info"></i></a></td>
+                   <td><a href="{{ path('maj_stagiaire', { 'id' : stagiaire.id }) }}"><i class="fa-solid fa-pen"></i></a></td>
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% endblock %}

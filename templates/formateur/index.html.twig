@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des formateurs{% endblock %}
+
+{% block body %}
+
+
+<h1>Liste des formateurs</h1>
+<a class="nav-link" href="{{path('formateur_ajouter')}}"> Ajouter un Formateur</a><br>
+<div class="box-tab">
+    <table class="table">
+        <thead class="thead-light">
+            <tr class="text-center">
+                <th>Nom</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for formateur in formateurs %}
+
+            <tr class="text-center">
+                <td><a href="{{ path('detail_formateur', {'id': formateur.id}) }}">{{ formateur }}</a></td>
+                 <td><a href="{{ path('maj_formateur', { 'id' : formateur.id }) }}"><i class="fa-solid fa-pen"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
